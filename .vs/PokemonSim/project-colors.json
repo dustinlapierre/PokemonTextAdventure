@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "57977aea-905c-4128-9e35-42b5f1028e68": {
+      "ProjectGuid": "57977aea-905c-4128-9e35-42b5f1028e68",
+      "DisplayName": "PokemonSim",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
