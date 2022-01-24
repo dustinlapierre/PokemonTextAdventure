@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dooms\\source\\repos\\PokemonSim\\PokemonSim\\PokemonSim.csproj": {}
+    "C:\\Users\\dooms\\Desktop\\PokemonTextAdventure\\PokemonSim\\PokemonSim.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dooms\\source\\repos\\PokemonSim\\PokemonSim\\PokemonSim.csproj": {
+    "C:\\Users\\dooms\\Desktop\\PokemonTextAdventure\\PokemonSim\\PokemonSim.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dooms\\source\\repos\\PokemonSim\\PokemonSim\\PokemonSim.csproj",
+        "projectUniqueName": "C:\\Users\\dooms\\Desktop\\PokemonTextAdventure\\PokemonSim\\PokemonSim.csproj",
         "projectName": "PokemonSim",
-        "projectPath": "C:\\Users\\dooms\\source\\repos\\PokemonSim\\PokemonSim\\PokemonSim.csproj",
+        "projectPath": "C:\\Users\\dooms\\Desktop\\PokemonTextAdventure\\PokemonSim\\PokemonSim.csproj",
         "packagesPath": "C:\\Users\\dooms\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dooms\\source\\repos\\PokemonSim\\PokemonSim\\obj\\",
+        "outputPath": "C:\\Users\\dooms\\Desktop\\PokemonTextAdventure\\PokemonSim\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dooms\\AppData\\Roaming\\NuGet\\NuGet.Config",
