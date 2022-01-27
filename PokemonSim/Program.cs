@@ -6,7 +6,6 @@ namespace PokemonSim
     {
         static void Main()
         {
-            Console.WriteLine("Welcome to the world of Pokemon!");
             Player player = new Player();
             Pokemon chary = new Pokemon(new Charmander(), 10);
             Pokemon bulba = new Pokemon(new Bulbasaur());

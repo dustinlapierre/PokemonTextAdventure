@@ -7,8 +7,13 @@
         public string name { get; set; }
         public int numBadges = 0;
         public int money = 0;
+        public StateMachine stateStack = new StateMachine();
         //public List<Item> bag = new List<Item>();
         //location
-        //state
+        public Player()
+        {
+            //game started - initial game setup goes here
+            stateStack.Push(new StartState());
+        }
     }
 }
