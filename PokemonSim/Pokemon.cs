@@ -57,5 +57,10 @@
         {
             attackList[attackChoice].execute(this, target);
         }
+
+        public void showDescription()
+        {
+            Console.WriteLine(name + ": " + pokemonData.description);
+        }
     }
 }

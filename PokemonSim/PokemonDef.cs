@@ -3,7 +3,8 @@
     //Pokemon base data as a Strategy
     public abstract class PokemonDef
     {
-        public string name { get; set; }
+        public string name { get; set; } = "Missingno";
+        public string description { get; set; } = "Unknown";
         public PokemonType type { get; set; }
         public int baseHP { get; set; }
         public int baseAttack { get; set; }
@@ -30,6 +31,7 @@
         public Charmander()
         {
             name = "Charmander";
+            description = "A fire type pokemon with a flame for a tail.";
             type = PokemonType.FIRE;
             baseHP = 39;
             baseAttack = 60;
