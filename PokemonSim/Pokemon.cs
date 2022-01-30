@@ -41,11 +41,11 @@
             defenseIV = rng.Next(0, 32);
             speedIV = rng.Next(0, 32);
 
-            calculateStats();
+            CalculateStats();
         }
 
         //sets current effective stats based on formula
-        public void calculateStats()
+        public void CalculateStats()
         {
             maxHP = ((2 * pokemonData.baseHP + hpIV) * level) / 100 + level + 10;
             effectiveAttack = ((2 * pokemonData.baseAttack + attackIV) * level)/100 + 5;
@@ -55,12 +55,13 @@
 
         public void DoAttack(int attackChoice, Pokemon target)
         {
-            attackList[attackChoice].execute(this, target);
+            attackList[attackChoice].Execute(this, target);
         }
 
-        public void showDescription()
+        //get a pokemons name and description
+        public string GetDescription()
         {
-            Console.WriteLine(name + ": " + pokemonData.description);
+            return (name + ": " + pokemonData.description);
         }
     }
 }

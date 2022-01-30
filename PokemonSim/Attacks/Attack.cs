@@ -6,7 +6,7 @@
         public string attackName { get; set; } = "ATTACK";
         public PokemonType attackType { get; set; }
         public int basePower { get; set; }
-        public virtual void execute(Pokemon attacker, Pokemon target)
+        public virtual void Execute(Pokemon attacker, Pokemon target)
         {
             //base damage
             double damage = (2 * attacker.level / 5 + 2) * basePower * attacker.effectiveAttack / target.effectiveDefense / 50 + 2;

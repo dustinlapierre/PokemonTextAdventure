@@ -16,35 +16,17 @@
             //Choose starter
             Console.WriteLine("Hello " + userName + "! Let's get you started with your first Pokemon!");
 
-            Console.Write("1: ");
+            //User selects a starter
             Pokemon charmander = new Pokemon(new Charmander(), 5);
-            charmander.showDescription();
-            Console.Write("2: ");
             Pokemon squirtle = new Pokemon(new Squirtle(), 5);
-            squirtle.showDescription();
-            Console.Write("3: ");
             Pokemon bulbasaur = new Pokemon(new Bulbasaur(), 5);
-            bulbasaur.showDescription();
 
             Pokemon[] starters = {charmander, squirtle, bulbasaur};
 
-            int choice = 0;
-            bool choosing = true;
-            while(choosing)
-            {
-                //replace with a get choice function!
-                Console.WriteLine("Starter Choice: ");
-                choice = Int32.Parse(Console.ReadLine());
-                if(choice >= 1 && choice <= 3)
-                {
-                    choosing = false;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid Choice!");
-                }
-            }
-            Console.WriteLine(starters[choice-1].name + " joined your party!");
+            int choice = Utils.GetChoice(charmander.GetDescription(), squirtle.GetDescription(), bulbasaur.GetDescription());
+
+            Console.WriteLine(starters[choice].name + " joined your party!");
+
             Thread.Sleep(3000);
         }
         public override void Update()
