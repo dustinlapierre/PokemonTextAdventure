@@ -24,8 +24,7 @@
             Pokemon[] starters = {charmander, squirtle, bulbasaur};
 
             int choice = Utils.GetChoice(charmander.GetDescription(), squirtle.GetDescription(), bulbasaur.GetDescription());
-
-            Console.WriteLine(starters[choice].name + " joined your party!");
+            Global.player.AddToParty(starters[choice]);
 
             Thread.Sleep(3000);
         }
@@ -34,7 +33,7 @@
             //base play options
             Console.Clear();
             Console.WriteLine("Current Location: " + Global.location.name);
-            Console.ReadLine();
+            Global.player.state.Update();
         }
     }
 }
