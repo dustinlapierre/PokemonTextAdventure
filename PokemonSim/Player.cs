@@ -30,5 +30,22 @@
             Console.WriteLine("Party is full, " + recruit.name + " will be sent to the PC instead!");
             //no slots left add to PC
         }
+
+        //draws the players party onto the screen
+        public void showParty()
+        {
+            foreach (Pokemon p in party)
+            {
+                if(p != null)
+                {
+                    Console.WriteLine("LV. {0} {1} {2} | HP: {3}/{4}",
+                        p.level, p.name, p.type.ToString(), p.currentHP, p.maxHP);
+                }
+                else
+                {
+                    Console.WriteLine("---");
+                }
+            }
+        }
     }
 }

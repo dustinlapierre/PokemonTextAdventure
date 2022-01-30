@@ -42,6 +42,7 @@
             speedIV = rng.Next(0, 32);
 
             CalculateStats();
+            currentHP = maxHP;
         }
 
         //sets current effective stats based on formula
