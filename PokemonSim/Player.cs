@@ -38,8 +38,15 @@
             {
                 if(p != null)
                 {
-                    Console.WriteLine("LV. {0} {1} {2} | HP: {3}/{4}",
-                        p.level, p.name, p.type.ToString(), p.currentHP, p.maxHP);
+                    //name and level
+                    Console.Write("LV. {0} {1}", p.level, p.name);
+                    //types
+                    foreach(PokemonType type in p.type)
+                    {
+                        Console.Write(" " + type.ToString() + " ");
+                    }
+                    //status
+                    Console.Write("| HP: {0}/{1}\n", p.currentHP, p.maxHP);
                 }
                 else
                 {

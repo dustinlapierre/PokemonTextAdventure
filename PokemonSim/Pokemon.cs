@@ -5,7 +5,7 @@
         //which pokemon am I?
         public PokemonDef pokemonData { get; set; }
         public string name { get => pokemonData.name; }
-        public PokemonType type { get => pokemonData.type; }
+        public List<PokemonType> type { get => pokemonData.type; }
 
         //muttable properties
         public int level { get; set; }

@@ -11,10 +11,14 @@
             //base damage
             double damage = (2 * attacker.level / 5 + 2) * basePower * attacker.effectiveAttack / target.effectiveDefense / 50 + 2;
             //type effectiveness
-            double damageMod = PokemonTypeUtils.getTypeDamageModifier(attackType, target.type);
+            double damageMod = 1;
+            foreach(PokemonType type in target.type)
+            {
+                damageMod *= PokemonTypeUtils.getTypeDamageModifier(attackType, type);
+            }
             //STAB
             double STAB = 0;
-            if (attacker.type == attackType) STAB = 0.1;
+            if (attacker.type.Contains(attackType)) STAB = 0.1;
             //final calc
             damage *= (damageMod+STAB);
             //deal damage

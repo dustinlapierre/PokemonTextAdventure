@@ -5,7 +5,7 @@
     {
         public string name { get; set; } = "Missingno";
         public string description { get; set; } = "Unknown";
-        public PokemonType type { get; set; }
+        public List<PokemonType> type { get; set; } = new List<PokemonType>();
         public int baseHP { get; set; }
         public int baseAttack { get; set; }
         public int baseDefense { get; set; }
@@ -18,7 +18,8 @@
         public Bulbasaur()
         {
             name = "Bulbasaur";
-            type = PokemonType.GRASS;
+            type.Add(PokemonType.GRASS);
+            type.Add(PokemonType.POISON);
             baseHP = 45;
             baseAttack = 65;
             baseDefense = 65;
@@ -32,7 +33,7 @@
         {
             name = "Charmander";
             description = "A fire type pokemon with a flame for a tail.";
-            type = PokemonType.FIRE;
+            type.Add(PokemonType.FIRE);
             baseHP = 39;
             baseAttack = 60;
             baseDefense = 50;
@@ -48,7 +49,7 @@
         public Squirtle()
         {
             name = "Squirtle";
-            type = PokemonType.WATER;
+            type.Add(PokemonType.WATER);
             baseHP = 44;
             baseAttack = 50;
             baseDefense = 65;
