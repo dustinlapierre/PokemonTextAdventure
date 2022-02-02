@@ -6,7 +6,7 @@
         {
             //show party printout
             Console.Clear();
-            Global.player.showParty();
+            Global.player.ShowParty();
             int choice = Utils.GetChoice("Close");
             Global.stateStack.Pop();
         }

@@ -32,7 +32,7 @@
         }
 
         //draws the players party onto the screen
-        public void showParty()
+        public void ShowParty()
         {
             foreach (Pokemon p in party)
             {
@@ -51,6 +51,18 @@
                 else
                 {
                     Console.WriteLine("---");
+                }
+            }
+        }
+
+        //fully heals all pokemon in your party
+        public void HealParty()
+        {
+            foreach (Pokemon p in party)
+            {
+                if (p != null)
+                {
+                    p.currentHP = p.maxHP;
                 }
             }
         }
