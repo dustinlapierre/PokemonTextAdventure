@@ -14,15 +14,19 @@
         {
             switch (option)
             {
+                case 0:
+                    Global.stateStack.Push(new BattleState());
+                    break;
                 case 2:
                     Global.location = new PalletTown();
                     Console.WriteLine("You traveled SOUTH to Pallet Town!");
+                    Thread.Sleep(2500);
                     break;
                 default:
                     Console.WriteLine("Oops not implemented yet!");
+                    Thread.Sleep(2500);
                     break;
             }
-            Thread.Sleep(2500);
         }
     }
 }

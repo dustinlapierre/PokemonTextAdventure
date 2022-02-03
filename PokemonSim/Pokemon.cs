@@ -64,5 +64,22 @@
         {
             return (name + ": " + pokemonData.description);
         }
+
+        //returns a pokemon's menu entry (as seen in menus and battle)
+        public string GetMenuText()
+        {
+            string text = "";
+            //name and level
+            text += String.Format("LV. {0} {1}", level, name);
+            //types
+            foreach (PokemonType type in type)
+            {
+                text += String.Format(" " + type.ToString() + " ");
+            }
+            //status
+            text += String.Format("| HP: {0}/{1}", currentHP, maxHP);
+
+            return text;
+        }
     }
 }

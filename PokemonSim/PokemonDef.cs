@@ -18,6 +18,7 @@
         public Bulbasaur()
         {
             name = "Bulbasaur";
+            description = "The GRASS/POISON type POKéMON with a seed planted on its back.";
             type.Add(PokemonType.GRASS);
             type.Add(PokemonType.POISON);
             baseHP = 45;
@@ -32,7 +33,7 @@
         public Charmander()
         {
             name = "Charmander";
-            description = "A fire type pokemon with a flame for a tail.";
+            description = "The FIRE type lizard POKéMON with a flame on its tail.";
             type.Add(PokemonType.FIRE);
             baseHP = 39;
             baseAttack = 60;
@@ -49,6 +50,7 @@
         public Squirtle()
         {
             name = "Squirtle";
+            description = "The WATER type tiny turtle POKéMON.";
             type.Add(PokemonType.WATER);
             baseHP = 44;
             baseAttack = 50;

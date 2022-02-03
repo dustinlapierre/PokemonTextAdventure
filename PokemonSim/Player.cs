@@ -38,18 +38,12 @@
             {
                 if(p != null)
                 {
-                    //name and level
-                    Console.Write("LV. {0} {1}", p.level, p.name);
-                    //types
-                    foreach(PokemonType type in p.type)
-                    {
-                        Console.Write(" " + type.ToString() + " ");
-                    }
-                    //status
-                    Console.Write("| HP: {0}/{1}\n", p.currentHP, p.maxHP);
+                    //print pokemon in menu
+                    Console.WriteLine(p.GetMenuText());
                 }
                 else
                 {
+                    //empty slot
                     Console.WriteLine("---");
                 }
             }
