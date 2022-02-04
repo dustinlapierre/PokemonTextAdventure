@@ -6,7 +6,7 @@
         public string name { get; set; } = "Missingno";
         public string description { get; set; } = "Unknown";
         public List<PokemonType> type { get; set; } = new List<PokemonType>();
-        public int baseHP { get; set; }
+        public double baseHP { get; set; }
         public int baseAttack { get; set; }
         public int baseDefense { get; set; }
         public int baseSpeed { get; set; }

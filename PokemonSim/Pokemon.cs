@@ -9,8 +9,8 @@
 
         //muttable properties
         public int level { get; set; }
-        public int maxHP { get; set; }
-        public int currentHP { get; set; }
+        public double maxHP { get; set; }
+        public double currentHP { get; set; }
         public int xp { get; set; } = 0;
         public int xpRequiredForLevel { get; set; }
 
@@ -80,6 +80,26 @@
             text += String.Format("| HP: {0}/{1}", currentHP, maxHP);
 
             return text;
+        }
+
+        //draws a healthbar for this pokemon of the given length
+        public void DrawHealthBar(int charLength)
+        {
+            double healthBlocks = (currentHP / maxHP) * charLength;
+            Console.Write("[");
+            for (int i = 0; i < charLength; i++)
+            {
+                if (healthBlocks > 0)
+                {
+                    Console.Write("■");
+                    healthBlocks -= 1;
+                }
+                else
+                {
+                    Console.Write("  ");
+                }
+            }
+            Console.Write("] HP:" + Math.Floor(currentHP) + "/" + Math.Floor(maxHP) + "\n");
         }
     }
 }

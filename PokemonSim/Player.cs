@@ -1,10 +1,8 @@
 ﻿namespace PokemonSim
 {
     //the player character, which doubles as the game controller
-    public class Player
+    public class Player : Trainer
     {
-        public Pokemon[] party = { null, null, null, null, null, null };
-        public string name { get; set; }
         public int numBadges = 0;
         public int money = 0;
         public State state { get; set; } = new PlayerIdleState();

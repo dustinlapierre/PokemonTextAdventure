@@ -22,7 +22,7 @@
             //final calc
             damage *= (damageMod+STAB);
             //deal damage
-            target.currentHP -= (int) damage;
+            target.currentHP -= damage;
 
             //printout
             Console.WriteLine(attacker.name + " used " + attackName + "!");
@@ -31,7 +31,7 @@
             else if (damageMod < 1)
                 Console.WriteLine("ITS NOT VERY EFFECTIVE!");
 
-            Console.WriteLine(target.name + " took " + (int) damage + " damage!");
+            Console.WriteLine(target.name + " took " + damage + " damage!");
         }
     }
 }

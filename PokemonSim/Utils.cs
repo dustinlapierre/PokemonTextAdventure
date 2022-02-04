@@ -6,11 +6,17 @@
         //returns the choice made as an int or 0 if an empty list is passed
         public static int GetChoice(params string[] optionList)
         {
+            //clear buffer before reading input
+            while (Console.KeyAvailable)
+            {
+                Console.ReadKey(false); // true = hide input
+            }
+
             //guard clause
             if (optionList.Length == 0) return 0;
 
             //show choices to user
-            for(int i = 0; i < optionList.Length; i++)
+            for (int i = 0; i < optionList.Length; i++)
             {
                 Console.WriteLine((i+1) + ": " + optionList[i]);
             }
@@ -24,6 +30,7 @@
             }
             //Show final choice result
             Console.WriteLine("Choice: " + choice);
+
             return choice-1;
         }
 

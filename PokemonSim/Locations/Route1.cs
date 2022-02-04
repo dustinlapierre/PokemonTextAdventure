@@ -15,7 +15,10 @@
             switch (option)
             {
                 case 0:
-                    Global.stateStack.Push(new BattleState());
+                    Trainer wildEncounter = new Trainer(
+                                new Pokemon(new Squirtle(), 8)
+                                );
+                    Global.stateStack.Push(new BattleState(wildEncounter));
                     break;
                 case 2:
                     Global.location = new PalletTown();
