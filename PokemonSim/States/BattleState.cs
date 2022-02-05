@@ -2,8 +2,8 @@
 {
     public class BattleState : State
     {
-        private Trainer enemy;
-        private bool trainerBattle;
+        public Trainer enemy;
+        public bool trainerBattle;
         public BattleState(Trainer enemy, bool trainerBattle = false)
         {
             this.enemy = enemy;
@@ -19,6 +19,7 @@
             else
                 Console.WriteLine("A wild " + enemy.party[0].name + " appeared!");
 
+            Thread.Sleep(1500);
             Console.WriteLine("Go " + Global.player.party[0].name + "!");
             Thread.Sleep(2500);
         }
@@ -41,9 +42,8 @@
             Global.player.party[0].DrawHealthBar(20);
             Console.WriteLine();
 
-            Console.WriteLine("Battle not implemented yet.");
-            Console.Read();
-            Global.stateStack.Pop();
+            //pass reference to this battle into the menu
+            Global.stateStack.Push(new BattleMenuState(this));
         }
     }
 }

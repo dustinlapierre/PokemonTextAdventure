@@ -26,12 +26,15 @@
 
             //printout
             Console.WriteLine(attacker.name + " used " + attackName + "!");
+            Thread.Sleep(1000);
+
             if(damageMod > 1)
                 Console.WriteLine("ITS SUPER EFFECTIVE!");
             else if (damageMod < 1)
                 Console.WriteLine("ITS NOT VERY EFFECTIVE!");
 
             Console.WriteLine(target.name + " took " + damage + " damage!");
+            Thread.Sleep(1000);
         }
     }
 }

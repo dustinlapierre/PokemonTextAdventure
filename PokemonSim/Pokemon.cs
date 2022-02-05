@@ -77,7 +77,7 @@
                 text += String.Format(" " + type.ToString() + " ");
             }
             //status
-            text += String.Format("| HP: {0}/{1}", currentHP, maxHP);
+            text += String.Format("| HP: {0}/{1}", (int) currentHP, (int) maxHP);
 
             return text;
         }
