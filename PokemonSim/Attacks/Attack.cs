@@ -33,8 +33,9 @@
             else if (damageMod < 1)
                 Console.WriteLine("ITS NOT VERY EFFECTIVE!");
 
-            Console.WriteLine(target.name + " took " + damage + " damage!");
-            Thread.Sleep(1000);
+            Console.WriteLine();
+            target.DrawHealthBar(20);
+            Console.WriteLine();
         }
     }
 }

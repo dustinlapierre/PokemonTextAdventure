@@ -13,5 +13,10 @@
                 this.party[i] = partyMembers[i];
             }
         }
+
+        public virtual void Defeated()
+        {
+            // base does nothing on defeat
+        }
     }
 }

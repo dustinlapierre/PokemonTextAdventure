@@ -48,7 +48,7 @@
         //sets current effective stats based on formula
         public void CalculateStats()
         {
-            maxHP = ((2 * pokemonData.baseHP + hpIV) * level) / 100 + level + 10;
+            maxHP = Math.Ceiling(((2 * pokemonData.baseHP + hpIV) * level) / 100 + level + 10);
             effectiveAttack = ((2 * pokemonData.baseAttack + attackIV) * level)/100 + 5;
             effectiveDefense = ((2 * pokemonData.baseDefense + defenseIV) * level) / 100 + 5;
             effectiveSpeed = ((2 * pokemonData.baseSpeed + speedIV) * level) / 100 + 5;
@@ -82,9 +82,22 @@
             return text;
         }
 
+        //returns an array of attack names this pokemon knows
+        public string[] GetAttackList()
+        {
+            List<string> list = new List<string>();
+            foreach(Attack attack in attackList)
+            {
+                if(attack != null)
+                    list.Add(attack.attackName + " | POWER: " + attack.basePower + " | TYPE: " + attack.attackType.ToString());
+            }
+            return list.ToArray();
+        }
+
         //draws a healthbar for this pokemon of the given length
         public void DrawHealthBar(int charLength)
         {
+            Console.WriteLine(name + " LV. " + level);
             double healthBlocks = (currentHP / maxHP) * charLength;
             Console.Write("[");
             for (int i = 0; i < charLength; i++)
@@ -99,7 +112,41 @@
                     Console.Write("  ");
                 }
             }
-            Console.Write("] HP:" + Math.Floor(currentHP) + "/" + Math.Floor(maxHP) + "\n");
+            Console.Write("] HP:" + Math.Max(Math.Ceiling(currentHP), 0) + "/" + Math.Ceiling(maxHP) + "\n");
+        }
+        
+        //prints faint message and sets HP to 0
+        public void Faint()
+        {
+            Console.WriteLine(name + " fainted!");
+            currentHP = 0;
+        }
+
+        //prints faint message and sets HP to 0
+        public void GiveXP(int amount)
+        {
+            Console.WriteLine(name + " gained " + amount + " XP!");
+            Thread.Sleep(2000);
+            xp += amount;
+
+            if(xp >= xpRequiredForLevel)
+            {
+                LevelUP();
+            }
+        }
+
+        //increases this pokemons level by 1
+        public void LevelUP()
+        {
+            if (level >= 100) return;
+
+            level += 1;
+            Console.WriteLine(name + " grew to level " + level + "!");
+            Thread.Sleep(2000);
+
+            xpRequiredForLevel = level * level * 5;
+            xp = 0;
+            CalculateStats();
         }
     }
 }

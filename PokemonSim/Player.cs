@@ -58,5 +58,10 @@
                 }
             }
         }
+
+        public override void Defeated()
+        {
+            //black out, lose money, reset to last spot
+        }
     }
 }

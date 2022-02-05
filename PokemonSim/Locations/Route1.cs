@@ -12,11 +12,24 @@
 
         public override void Explore(int option)
         {
+            //20% chance trainer encounter when trying actions here
+            Random rng = new Random();
+            if (rng.Next(0, 100) <= 20)
+            {
+                Trainer joey = new Trainer(
+                    new Pokemon(new Bulbasaur(), 5)
+                    );
+                joey.name = "Joey";
+
+                Global.stateStack.Push(new BattleState(joey, true, 250));
+                return;
+            }
+
             switch (option)
             {
                 case 0:
                     Trainer wildEncounter = new Trainer(
-                                new Pokemon(new Squirtle(), 8)
+                                new Pokemon(new Squirtle(), 2)
                                 );
                     Global.stateStack.Push(new BattleState(wildEncounter));
                     break;

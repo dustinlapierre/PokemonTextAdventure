@@ -7,17 +7,25 @@
         {
             this.battleState = battle;
         }
-        public override void Update()
+        public override void Enter()
         {
             int choose = Utils.GetChoice("Fight", "Run"); //pokemon, items
             switch(choose)
             {
                 case 0:
-                    //Fight - for now both pokemon just do their first attack
-                    Global.player.party[0].DoAttack(0, battleState.enemy.party[0]);
-                    battleState.enemy.party[0].DoAttack(0, Global.player.party[0]);
-                    //pop menu state
-                    Global.stateStack.Pop();
+                    //Fight
+                    if (Global.player.party[0].effectiveSpeed >= battleState.enemy.party[0].effectiveSpeed)
+                    {
+                        //player goes first
+                        Global.stateStack.Push(new EnemyTurnState(battleState));
+                        Global.stateStack.Push(new PlayerTurnState(battleState));
+                    }
+                    else
+                    {
+                        //enemy goes first
+                        Global.stateStack.Push(new PlayerTurnState(battleState));
+                        Global.stateStack.Push(new EnemyTurnState(battleState));
+                    }
                     break;
                 case 1:
                     //Run
@@ -28,15 +36,24 @@
                     }
                     else
                     {
-                        AttemptRun();
+                        //enemy attacks if run fails
+                        if(!AttemptRun())
+                            Global.stateStack.Push(new EnemyTurnState(battleState));
                     }
+                    Thread.Sleep(2500);
                     break;
             }
-            Thread.Sleep(2500);
+            Console.Clear();
+        }
+
+        public override void Update()
+        {
+            //pop menu state
+            Global.stateStack.Pop();
         }
 
         //Run the run formula to see if run is successful or not
-        private void AttemptRun()
+        private bool AttemptRun()
         {
             Random rng = new Random();
             double runOdds = rng.Next(0, 255);
@@ -50,12 +67,13 @@
 
                 //pop battle state
                 Global.stateStack.Pop();
+
+                return true;
             }
             else
             {
                 Console.WriteLine("Can't escape!");
-                //pop menu state
-                Global.stateStack.Pop();
+                return false;
             }
         }
     }
