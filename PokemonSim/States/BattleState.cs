@@ -20,9 +20,9 @@
             if (trainerBattle)
             {
                 //trainer battle intro
-                Console.WriteLine("Trainer " + enemy.name + " would like to battle!");
+                Console.WriteLine(enemy.name + " would like to battle!");
                 Thread.Sleep(1000);
-                Console.WriteLine("Trainer " + enemy.name + " threw out " + enemy.party[0].name + "!");
+                Console.WriteLine(enemy.name + " threw out " + enemy.party[0].name + "!");
             }
             else
             {
@@ -38,15 +38,14 @@
         public override void Update()
         {
             Console.Clear();
-
             DrawBattlefield();
 
             if (LossCheck(enemy))
             {
                 if (trainerBattle)
                 {
-                    Console.WriteLine(Global.player.name.ToUpper() + " defeated Trainer " + enemy.name + "!");
-                    Console.WriteLine(enemy.name + " drops " + reward + "$!");
+                    Console.WriteLine(Global.player.name.ToUpper() + " defeated " + enemy.name + "!");
+                    Console.WriteLine(enemy.name + " dropped " + reward + "$!");
                     Global.player.money += reward;
                     enemy.Defeated();
 

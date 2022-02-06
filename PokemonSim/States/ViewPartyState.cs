@@ -7,8 +7,15 @@
             //show party printout
             Console.Clear();
             Global.player.ShowParty();
-            int choice = Utils.GetChoice("Close");
-            Global.stateStack.Pop();
+            int choice = Utils.GetChoice("Swap", "Back");
+            switch(choice)
+            {
+                case 0:
+                    break;
+                case 1:
+                    Global.stateStack.Pop();
+                    break;
+            }
         }
     }
 }

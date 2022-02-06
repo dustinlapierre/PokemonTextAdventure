@@ -7,27 +7,25 @@
         {
             this.battleState = battle;
         }
-        public override void Enter()
+
+        public override void Update()
         {
-            int choose = Utils.GetChoice("Fight", "Run"); //pokemon, items
-            switch(choose)
+            Console.Clear();
+            battleState.DrawBattlefield();
+
+            int choose = Utils.GetChoice("Fight", "Pokemon", "Throw Pokeball", "Run");
+            switch (choose)
             {
                 case 0:
                     //Fight
-                    if (Global.player.party[0].effectiveSpeed >= battleState.enemy.party[0].effectiveSpeed)
-                    {
-                        //player goes first
-                        Global.stateStack.Push(new EnemyTurnState(battleState));
-                        Global.stateStack.Push(new PlayerTurnState(battleState));
-                    }
-                    else
-                    {
-                        //enemy goes first
-                        Global.stateStack.Push(new PlayerTurnState(battleState));
-                        Global.stateStack.Push(new EnemyTurnState(battleState));
-                    }
+                    Global.stateStack.Push(new BattleMoveSelectState(battleState));
                     break;
+
                 case 1:
+                    Global.stateStack.Push(new ViewPartyState());
+                    break;
+
+                case 3:
                     //Run
                     //Trainer battle check
                     if (battleState.trainerBattle)
@@ -37,33 +35,27 @@
                     else
                     {
                         //enemy attacks if run fails
-                        if(!AttemptRun())
-                            Global.stateStack.Push(new EnemyTurnState(battleState));
+                        if (!AttemptRun())
+                            Global.stateStack.Push(new BattleAttackState(battleState, battleState.enemy.party[0], Global.player.party[0]));
                     }
                     Thread.Sleep(2500);
                     break;
             }
-            Console.Clear();
-        }
-
-        public override void Update()
-        {
-            //pop menu state
-            Global.stateStack.Pop();
         }
 
         //Run the run formula to see if run is successful or not
         private bool AttemptRun()
         {
+            //pop menu state
+            Global.stateStack.Pop();
+
+            //run check
             Random rng = new Random();
             double runOdds = rng.Next(0, 255);
             double oddsEscape = ((Global.player.party[0].effectiveSpeed * 128 / battleState.enemy.party[0].effectiveSpeed) + 30) % 256;
             if (runOdds <= oddsEscape)
             {
                 Console.WriteLine("Got away safely!");
-
-                //pop menu state
-                Global.stateStack.Pop();
 
                 //pop battle state
                 Global.stateStack.Pop();
@@ -73,6 +65,7 @@
             else
             {
                 Console.WriteLine("Can't escape!");
+
                 return false;
             }
         }

@@ -6,7 +6,6 @@
         public int numBadges = 0;
         public int money = 0;
         public State state { get; set; } = new PlayerIdleState();
-        //public List<Item> bag = new List<Item>();
         public Player(string name)
         {
             this.name = name;
@@ -61,7 +60,13 @@
 
         public override void Defeated()
         {
-            //black out, lose money, reset to last spot
+            //player has been defeated
+            Console.WriteLine(name.ToUpper() + " is out of usable pokemon!");
+            Thread.Sleep(2000);
+            Console.WriteLine(name.ToUpper() + " blacked out...");
+            money = money / 2;
+            HealParty();
+            Thread.Sleep(2500);
         }
     }
 }

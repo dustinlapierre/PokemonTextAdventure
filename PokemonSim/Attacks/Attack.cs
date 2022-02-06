@@ -14,7 +14,7 @@
             double damageMod = 1;
             foreach(PokemonType type in target.type)
             {
-                damageMod *= PokemonTypeUtils.getTypeDamageModifier(attackType, type);
+                damageMod *= PokemonTypeUtils.GetTypeDamageModifier(attackType, type);
             }
             //STAB
             double STAB = 0;

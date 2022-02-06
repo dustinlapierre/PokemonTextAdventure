@@ -35,7 +35,7 @@
             { (PokemonType.POISON, PokemonType.POISON), 0.5},
         };
 
-        public static double getTypeDamageModifier(PokemonType a, PokemonType b)
+        public static double GetTypeDamageModifier(PokemonType a, PokemonType b)
         {
             double modifier = 1;
             if(typeChart.ContainsKey((a,b)))
