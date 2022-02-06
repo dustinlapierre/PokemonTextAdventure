@@ -33,9 +33,6 @@
             attacker.DoAttack(attackChoice, defender);
 
             Thread.Sleep(2000);
-
-            //death check
-            battleState.FaintCheck();
         }
 
         private int AIMoveSelection()

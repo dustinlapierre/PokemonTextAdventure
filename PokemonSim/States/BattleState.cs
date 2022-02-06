@@ -40,35 +40,12 @@
             Console.Clear();
             DrawBattlefield();
 
-            if (LossCheck(enemy))
+            //is either pokemon fainted
+            if(!FaintCheck())
             {
-                if (trainerBattle)
-                {
-                    Console.WriteLine(Global.player.name.ToUpper() + " defeated " + enemy.name + "!");
-                    Console.WriteLine(enemy.name + " dropped " + reward + "$!");
-                    Global.player.money += reward;
-                    enemy.Defeated();
-
-                    Utils.GetChoice("Continue...");
-                }
-                //pop battle state
-                Global.stateStack.Pop();
-                return;
+                //if no pokemon are fainted, open the option select
+                Global.stateStack.Push(new BattleMenuState(this));
             }
-
-            //loss check
-            if (LossCheck(Global.player))
-            {
-                //pop battle state
-                Global.stateStack.Pop();
-                Global.player.Defeated();
-                return;
-            }
-
-            //forced swap check
-
-            //pass reference to this battle into the menu
-            Global.stateStack.Push(new BattleMenuState(this));
         }
 
         //Draws both pokemon in battle and their data
@@ -87,24 +64,59 @@
             Console.WriteLine();
         }
 
-        //Check if either combatant has fainted
-        public bool FaintCheck()
+        //Check if either combatant has fainted, and trigger a swap if so
+        private bool FaintCheck()
         {
             if (Global.player.party[0].currentHP <= 0)
             {
+                Thread.Sleep(1000);
                 Global.player.party[0].Faint();
                 Thread.Sleep(2000);
+
+                //loss check
+                if (LossCheck(Global.player))
+                {
+                    //pop battle state
+                    Global.stateStack.Pop();
+                    Global.player.Defeated();
+                }
+                else
+                {
+                    //player must swap pokemon
+                }
+
                 return true;
             }
 
             if (enemy.party[0].currentHP <= 0)
             {
+                Thread.Sleep(1000);
                 enemy.party[0].Faint();
                 Thread.Sleep(2000);
 
                 //grant xp
                 Global.player.party[0].GiveXP((int) (enemy.party[0].maxHP * enemy.party[0].level));
                 Thread.Sleep(2000);
+
+                if (LossCheck(enemy))
+                {
+                    if (trainerBattle)
+                    {
+                        Console.WriteLine(Global.player.name.ToUpper() + " defeated " + enemy.name + "!");
+                        Console.WriteLine(enemy.name + " dropped " + reward + "$!");
+                        Global.player.money += reward;
+                        enemy.Defeated();
+
+                        Utils.GetChoice("Continue...");
+                    }
+                    //pop battle state
+                    Global.stateStack.Pop();
+                }
+                else
+                {
+                    //opponent must swap pokemon
+                }
+
                 return true;
             }
             return false;
