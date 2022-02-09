@@ -83,6 +83,7 @@
                 else
                 {
                     //player must swap pokemon
+                    Global.player.SwapActivePokemon();
                 }
 
                 return true;
@@ -92,11 +93,11 @@
             {
                 Thread.Sleep(1000);
                 enemy.party[0].Faint();
-                Thread.Sleep(2000);
+                Thread.Sleep(1500);
 
                 //grant xp
                 Global.player.party[0].GiveXP((int) (enemy.party[0].maxHP * enemy.party[0].level));
-                Thread.Sleep(2000);
+                Thread.Sleep(1500);
 
                 if (LossCheck(enemy))
                 {
@@ -115,6 +116,16 @@
                 else
                 {
                     //opponent must swap pokemon
+                    enemy.SwapActivePokemon();
+
+                    //give player the option to swap as well
+                    Console.WriteLine(enemy.name + " is going to throw out " + enemy.party[0].name + ".");
+                    Console.WriteLine("Would you like to switch POKeMON?");
+                    int choice = Utils.GetChoice("Yes", "No");
+                    if(choice == 0)
+                    {
+                        Global.player.SwapActivePokemon(false);
+                    }
                 }
 
                 return true;

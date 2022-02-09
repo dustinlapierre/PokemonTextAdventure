@@ -76,8 +76,14 @@
             {
                 text += String.Format(" " + type.ToString() + " ");
             }
+
+            text += "| ";
+
             //status
-            text += String.Format("| HP: {0}/{1}", (int) currentHP, (int) maxHP);
+            if (currentHP > 0)
+                text += String.Format("HP: {0}/{1}", (int)currentHP, (int)maxHP);
+            else
+                text += "FAINTED";
 
             return text;
         }

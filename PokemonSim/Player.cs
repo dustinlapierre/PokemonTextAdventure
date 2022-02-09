@@ -68,5 +68,56 @@
             HealParty();
             Thread.Sleep(2500);
         }
+
+        public override void SwapActivePokemon(bool forcedSwap = true)
+        {
+            //player chooses which pokemon to swap to in battle
+            List<string> partyNames = new List<string>();
+            foreach (Pokemon p in party)
+            {
+                if(p == null)
+                {
+                    partyNames.Add("---");
+                }
+                else
+                {
+                    partyNames.Add(p.GetMenuText());
+                }
+            }
+            //allow player to cancel if the swap isn't forced
+            if(!forcedSwap) partyNames.Add("Cancel");
+
+            while (true)
+            {
+                Console.Clear();
+                //prompt player to select pokemon
+                Console.WriteLine("Choose a POKeMON: ");
+                int choice = Utils.GetChoice(partyNames.ToArray());
+
+                //check for cancel
+                if (partyNames[choice] == "Cancel") break;
+
+                if (choice == 0)
+                {
+                    Console.WriteLine("That POKeMON is already active!");
+                    Thread.Sleep(2000);
+                }
+                else if(party[choice].currentHP <= 0)
+                {
+                    Console.WriteLine("That POKeMON isn't fit for battle!");
+                    Thread.Sleep(2000);
+                }
+                else if(party[choice] != null)
+                {
+                    //valid selection was made, escape
+                    (party[0], party[choice]) = (party[choice], party[0]);
+                    Console.Clear();
+                    Console.WriteLine("Go " + party[0].name + "!");
+                    Thread.Sleep(2000);
+                    break;
+                }
+
+            }
+        }
     }
 }

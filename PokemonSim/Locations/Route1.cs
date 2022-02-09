@@ -17,7 +17,8 @@
             if (rng.Next(0, 100) <= 15)
             {
                 Trainer joey = new Trainer(
-                    new Pokemon(new Bulbasaur(), 5)
+                    new Pokemon(new Bulbasaur(), 4),
+                    new Pokemon(new Squirtle(), 1000)
                     );
                 joey.name = "Trainer Joey";
 
