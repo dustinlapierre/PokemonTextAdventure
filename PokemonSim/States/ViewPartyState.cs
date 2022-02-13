@@ -11,6 +11,7 @@
             switch(choice)
             {
                 case 0:
+                    Global.player.SwapPartyPokemon();
                     break;
                 case 1:
                     Global.stateStack.Pop();

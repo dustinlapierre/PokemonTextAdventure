@@ -22,7 +22,7 @@
                     break;
 
                 case 1:
-                    Global.stateStack.Push(new ViewPartyState());
+                    Global.stateStack.Push(new BattleViewPartyState(battleState));
                     break;
 
                 case 3:

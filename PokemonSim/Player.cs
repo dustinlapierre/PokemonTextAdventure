@@ -102,12 +102,17 @@
                     Console.WriteLine("That POKeMON is already active!");
                     Thread.Sleep(2000);
                 }
+                else if(party[choice] == null)
+                {
+                    Console.WriteLine("That slot is empty!");
+                    Thread.Sleep(2000);
+                }
                 else if(party[choice].currentHP <= 0)
                 {
                     Console.WriteLine("That POKeMON isn't fit for battle!");
                     Thread.Sleep(2000);
                 }
-                else if(party[choice] != null)
+                else
                 {
                     //valid selection was made, escape
                     (party[0], party[choice]) = (party[choice], party[0]);
@@ -117,6 +122,32 @@
                     break;
                 }
 
+            }
+        }
+        public void SwapPartyPokemon()
+        {
+            //player chooses two pokemon to swap
+            Console.WriteLine("Type the numbers of the POKeMON you wish to swap separated by a space (Ex. Swap: 2 4)");
+            Console.Write("Swap: ");
+
+            //parse out both choices
+            var choices = new List<int>();
+            foreach (string s in Console.ReadLine().Split())
+            {
+                if (choices.Count >= 2) break;
+
+                if (int.TryParse(s, out int number))
+                {
+                    if (number <= party.Length && number >= 1)
+                        choices.Add(number-1);
+                }
+                else return;
+            }
+            if (choices.Count < 2) return;
+
+            if (party[choices[0]] != null && party[choices[1]] != null)
+            {
+                (party[choices[0]], party[choices[1]]) = (party[choices[1]], party[choices[0]]);
             }
         }
     }

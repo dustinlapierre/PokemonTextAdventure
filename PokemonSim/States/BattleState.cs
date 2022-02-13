@@ -31,6 +31,17 @@
             }
 
             Thread.Sleep(1500);
+            //if lead pokemon is fainted swap to next available
+            if (Global.player.party[0].currentHP <= 0)
+            {
+                for (int i = 0; i < Global.player.party.Length; i++)
+                {
+                    if(Global.player.party[i] != null && Global.player.party[i].currentHP > 0)
+                    {
+                        (Global.player.party[0], Global.player.party[i]) = (Global.player.party[i], Global.player.party[0]);
+                    }
+                }
+            }
             Console.WriteLine("Go " + Global.player.party[0].name + "!");
             Thread.Sleep(2500);
         }
