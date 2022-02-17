@@ -48,7 +48,7 @@
         }
 
         //sets current effective stats based on formula
-        public void CalculateStats()
+        private void CalculateStats()
         {
             maxHP = Math.Ceiling(((2 * pokemonData.baseHP + hpIV) * level) / 100 + level + 10);
             effectiveAttack = ((2 * pokemonData.baseAttack + attackIV) * level)/100 + 5;
@@ -57,22 +57,28 @@
         }
 
         //simulates leveling to give pokemon a level accurate moveset
-        public void GenerateMoveset()
+        private void GenerateMoveset()
         {
             //for each level up to the current one
             for(int i = 1;i < level; i++)
             {
-                //if the pokemon learns a move at that level
-                if(pokemonData.learnset.ContainsKey(i))
-                {
-                    LearnMove(pokemonData.learnset[i]);
-                }
+                //Add move if one is learned at this level
+                CheckLearn(i);
+            }
+        }
+
+        //check if a move is learned at this level and learn it
+        private void CheckLearn(int levelToCheck, bool withUI = false)
+        {
+            if (pokemonData.learnset.ContainsKey(levelToCheck))
+            {
+                LearnMove(pokemonData.learnset[levelToCheck], withUI);
             }
         }
 
         //adds a given attack to the pokemon's next empty move slot
         //if no slots exist, a random move is overwritten
-        public void LearnMove(Attack move)
+        public void LearnMove(Attack move, bool withUI = false)
         {
             for(int i = 0; i< attackList.Length; i++)
             {
@@ -80,12 +86,21 @@
                 if(attackList[i] == null)
                 {
                     attackList[i] = move;
+                    if(withUI)
+                    {
+                        Console.WriteLine(name + " learned " + move.attackName + "!");
+                        Thread.Sleep(2000);
+                    }
                     return;
                 }
             }
             //no empty slots left, random overwrite 
-            Random rng = new Random();
-            attackList[rng.Next(0, 4)] = move;
+            if(!withUI)
+            {
+                Random rng = new Random();
+                attackList[rng.Next(0, 4)] = move;
+            }
+            //if UI then the player chooses which move to replace
         }
 
         public void DoAttack(int attackChoice, Pokemon target)
@@ -169,23 +184,32 @@
             Thread.Sleep(2000);
             xp += amount;
 
-            if(xp >= xpRequiredForLevel)
+            while(xp >= xpRequiredForLevel)
             {
                 LevelUP();
             }
         }
 
         //increases this pokemons level by 1
-        public void LevelUP()
+        //reduces xp by amount required
+        private void LevelUP()
         {
-            if (level >= 100) return;
+            if (level >= 100)
+            {
+                xp = 0;
+                return;
+            }
+
+            xp = Math.Max(0, xp - xpRequiredForLevel);
 
             level += 1;
             Console.WriteLine(name + " grew to level " + level + "!");
             Thread.Sleep(2000);
 
+            //check for new moves to learn with UI
+            CheckLearn(level, true);
+
             xpRequiredForLevel = level * level * 5;
-            xp = 0;
             CalculateStats();
         }
     }
