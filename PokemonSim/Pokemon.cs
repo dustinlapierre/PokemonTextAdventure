@@ -26,7 +26,7 @@
         public readonly int speedIV;
 
         //Pokemon can know up to 4 attacks at a time
-        public Attack[] attackList = {new Tackle(), new Ember(), null, null };
+        public Attack[] attackList = {null, null, null, null };
 
         public Pokemon(PokemonDef pokemonData, int level = 1)
         {
@@ -43,6 +43,8 @@
 
             CalculateStats();
             currentHP = maxHP;
+
+            GenerateMoveset();
         }
 
         //sets current effective stats based on formula
@@ -52,6 +54,38 @@
             effectiveAttack = ((2 * pokemonData.baseAttack + attackIV) * level)/100 + 5;
             effectiveDefense = ((2 * pokemonData.baseDefense + defenseIV) * level) / 100 + 5;
             effectiveSpeed = ((2 * pokemonData.baseSpeed + speedIV) * level) / 100 + 5;
+        }
+
+        //simulates leveling to give pokemon a level accurate moveset
+        public void GenerateMoveset()
+        {
+            //for each level up to the current one
+            for(int i = 1;i < level; i++)
+            {
+                //if the pokemon learns a move at that level
+                if(pokemonData.learnset.ContainsKey(i))
+                {
+                    LearnMove(pokemonData.learnset[i]);
+                }
+            }
+        }
+
+        //adds a given attack to the pokemon's next empty move slot
+        //if no slots exist, a random move is overwritten
+        public void LearnMove(Attack move)
+        {
+            for(int i = 0; i< attackList.Length; i++)
+            {
+                //null slot found, add it and exit method
+                if(attackList[i] == null)
+                {
+                    attackList[i] = move;
+                    return;
+                }
+            }
+            //no empty slots left, random overwrite 
+            Random rng = new Random();
+            attackList[rng.Next(0, 4)] = move;
         }
 
         public void DoAttack(int attackChoice, Pokemon target)

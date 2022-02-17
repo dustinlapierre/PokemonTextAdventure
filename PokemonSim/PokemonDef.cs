@@ -25,7 +25,10 @@
             baseAttack = 65;
             baseDefense = 65;
             baseSpeed = 45;
-            learnset = new Dictionary<int, Attack>() { { 1, new Tackle() } };
+            learnset = new Dictionary<int, Attack>() { 
+                { 1, new Tackle() },
+                { 3, new VineWhip() },
+            };
         }
     }
     public class Charmander : PokemonDef
@@ -56,7 +59,10 @@
             baseAttack = 50;
             baseDefense = 65;
             baseSpeed = 43;
-            learnset = new Dictionary<int, Attack>() { { 1, new Tackle() } };
+            learnset = new Dictionary<int, Attack>() { 
+                { 1, new Tackle() },
+                { 3, new WaterGun() }
+            };
         }
     }
 }

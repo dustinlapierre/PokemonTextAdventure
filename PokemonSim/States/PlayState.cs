@@ -28,8 +28,6 @@
             Global.player.AddToParty(squirtle);
             Global.player.AddToParty(bulbasaur);
 
-            Global.player.party[0].currentHP = 0;
-
             Thread.Sleep(3000);
         }
         public override void Update()
