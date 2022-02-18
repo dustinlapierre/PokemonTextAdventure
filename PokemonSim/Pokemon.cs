@@ -13,6 +13,7 @@
         public double currentHP { get; set; }
         public int xp { get; set; } = 0;
         public int xpRequiredForLevel { get; set; }
+        public bool evolve { get; set; }
 
         //battle stats
         public int effectiveAttack { get; set; }
@@ -46,6 +47,8 @@
 
             GenerateMoveset();
         }
+        //can give a pokemon ID instead of a definition object
+        public Pokemon(int pokeID, int level = 1) : this(Global.pokeDex[pokeID], level) { }
 
         //sets current effective stats based on formula
         private void CalculateStats()
@@ -206,11 +209,41 @@
             Console.WriteLine(name + " grew to level " + level + "!");
             Thread.Sleep(2000);
 
+            //evolve flag can only be set on level up (prevents pokemon from evolving on catch)
+            if (level >= pokemonData.evolvesAt && pokemonData.evolvesInto != -1)
+            {
+                evolve = true;
+            }
+
             //check for new moves to learn with UI
             CheckLearn(level, true);
 
             xpRequiredForLevel = level * level * 5;
             CalculateStats();
+        }
+
+        //checks the evolve flag of this pokemon and evolves them if needed
+        public void CheckEvolve()
+        {
+            if(evolve)
+            {
+                Console.Clear();
+                string oldName = name;
+                Console.WriteLine("What?");
+                Console.WriteLine(oldName + " is evolving!");
+                Thread.Sleep(1500);
+                Console.Write("Dun Da ");
+                Thread.Sleep(1000);
+                Console.Write("dun da ");
+                Thread.Sleep(1000);
+                Console.Write("dun daaa! \n");
+                Thread.Sleep(2000);
+                //evolve
+                pokemonData = Global.pokeDex[pokemonData.evolvesInto];
+                Console.WriteLine("Congratulations! Your {0} evolved into a {1}!", oldName, name);
+                Thread.Sleep(2500);
+                Console.Clear();
+            }
         }
     }
 }
