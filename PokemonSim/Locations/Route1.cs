@@ -12,14 +12,13 @@
 
         public override void Explore(int option)
         {
-            //20% chance trainer encounter when trying actions here
+            //15% chance trainer encounter when trying actions here
             Random rng = new Random();
-            if (rng.Next(0, 100) <= 15)
+            if (rng.Next(1, 101) <= 15)
             {
                 Trainer joey = new Trainer(
-                    new Pokemon(new Bulbasaur(), 5),
-                    new Pokemon(new Squirtle(), 5),
-                    new Pokemon(new Charmander(), 5)
+                    new Pokemon(new Pidgey(), 4),
+                    new Pokemon(new Pidgey(), 4)
                     );
                 joey.name = "Trainer Joey";
 
@@ -31,9 +30,7 @@
             {
                 case 0:
                     List<PokemonDef> encounters = new List<PokemonDef>();
-                    encounters.Add(new Squirtle());
-                    encounters.Add(new Charmander());
-                    encounters.Add(new Bulbasaur());
+                    encounters.Add(new Pidgey());
 
                     Trainer wildEncounter = new Trainer(
                                 new Pokemon(encounters[rng.Next(encounters.Count)], rng.Next(2, 5))

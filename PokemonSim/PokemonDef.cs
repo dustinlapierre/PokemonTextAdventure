@@ -122,4 +122,22 @@
             };
         }
     }
+    public class Pidgey : PokemonDef
+    {
+        public Pidgey()
+        {
+            name = "Pidgey";
+            description = "It is docile and prefers to avoid conflict. If disturbed, however, it can ferociously strike back.";
+            type.Add(PokemonType.NORMAL);
+            type.Add(PokemonType.FLYING);
+            baseHP = 40;
+            baseAttack = 45;
+            baseDefense = 40;
+            baseSpeed = 56;
+            learnset = new Dictionary<int, Attack>() {
+                { 1, new Tackle() },
+                { 9, new Gust() },
+            };
+        }
+    }
 }

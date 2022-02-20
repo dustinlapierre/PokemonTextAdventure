@@ -15,7 +15,8 @@
             {4, new Charmander()},
             {5, new Charmeleon()},
             {7, new Squirtle()},
-            {8, new Wartortle()}
+            {8, new Wartortle()},
+            {16, new Pidgey()},
         };
     }
 }

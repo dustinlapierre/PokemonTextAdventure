@@ -259,7 +259,7 @@
         //checks the evolve flag of this pokemon and evolves them if needed
         public void CheckEvolve()
         {
-            if(evolve)
+            if(evolve && pokemonData.evolvesInto != -1)
             {
                 Console.Clear();
                 string oldName = name;
@@ -272,10 +272,13 @@
                 Thread.Sleep(1000);
                 Console.Write("dun daaa! \n");
                 Thread.Sleep(2000);
+
                 //evolve
+                Console.WriteLine("Congratulations! Your {0} evolved into a {1}!", name, Global.pokeDex[pokemonData.evolvesInto].name);
                 pokemonData = Global.pokeDex[pokemonData.evolvesInto];
+                evolve = false; //reset evolve flag
                 CalculateStats();
-                Console.WriteLine("Congratulations! Your {0} evolved into a {1}!", oldName, name);
+
                 Thread.Sleep(2500);
                 Console.Clear();
             }
