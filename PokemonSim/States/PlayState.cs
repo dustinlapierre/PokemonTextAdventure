@@ -25,8 +25,6 @@
 
             int choice = Utils.GetChoice(charmander.GetDescription(), squirtle.GetDescription(), bulbasaur.GetDescription());
             Global.player.AddToParty(starters[choice]);
-            Global.player.AddToParty(squirtle);
-            Global.player.AddToParty(bulbasaur);
 
             Thread.Sleep(3000);
         }

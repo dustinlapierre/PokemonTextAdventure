@@ -12,6 +12,7 @@
         {
             {1, new Bulbasaur()},
             {4, new Charmander()},
+            {5, new Charmeleon()},
             {7, new Squirtle()},
         };
     }

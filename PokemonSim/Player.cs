@@ -25,7 +25,7 @@
                 }
             }
             Console.WriteLine("Party is full, " + recruit.name + " will be sent to the PC instead!");
-            //no slots left add to PC
+            //no slots left add to PC (not implemented)
         }
 
         //draws the players party onto the screen

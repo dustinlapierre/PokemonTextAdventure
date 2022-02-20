@@ -6,8 +6,8 @@
         public string name { get; set; } = "Missingno";
         public string description { get; set; } = "Unknown";
         public List<PokemonType> type { get; set; } = new List<PokemonType>();
-        public int evolvesInto { get; set; } = -1;//pokedex number of pokemon I evolve into
-        public int evolvesAt { get; set; } = 0; //zero means no evolution
+        public int evolvesInto { get; set; } = -1; //pokedex number of the pokemon I evolve into (-1 means no evolution)
+        public int evolvesAt { get; set; } = 0; //when a pokemon levels up and is >= this number, they evolve
         public double baseHP { get; set; }
         public int baseAttack { get; set; }
         public int baseDefense { get; set; }
@@ -40,7 +40,7 @@
             name = "Charmander";
             description = "The FIRE type lizard POKéMON with a flame on its tail.";
             type.Add(PokemonType.FIRE);
-            evolvesInto = 1; //this temporarily evolves into Bulbasaur
+            evolvesInto = 5;
             evolvesAt = 6; //should be 16
             baseHP = 39;
             baseAttack = 60;
@@ -49,6 +49,22 @@
             learnset = new Dictionary<int, Attack>() { 
                 { 1, new Tackle() },
                 { 4, new Ember() }
+            };
+        }
+    }
+    public class Charmeleon : PokemonDef
+    {
+        public Charmeleon()
+        {
+            name = "Charmeleon";
+            description = "When it swings its burning tail, it elevates the temperature to unbearably high levels.";
+            type.Add(PokemonType.FIRE);
+            baseHP = 58;
+            baseAttack = 80;
+            baseDefense = 65;
+            baseSpeed = 80;
+            learnset = new Dictionary<int, Attack>() {
+                { 1, new Ember() }
             };
         }
     }

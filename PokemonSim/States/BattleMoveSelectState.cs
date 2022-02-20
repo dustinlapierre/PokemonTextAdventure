@@ -11,11 +11,7 @@
         public override void Update()
         {
             //load attack list and append back option
-            List<string> options = new List<string>();
-            foreach(string atk in Global.player.party[0].GetAttackList())
-            {
-                options.Add(atk);
-            }
+            List<string> options = Global.player.party[0].GetAttackList();
             options.Add("Back");
 
             //get player choice

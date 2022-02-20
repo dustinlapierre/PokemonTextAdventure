@@ -80,7 +80,7 @@
         }
 
         //adds a given attack to the pokemon's next empty move slot
-        //if no slots exist, a random move is overwritten
+        //if no slots exist, a move must be overwritten
         public void LearnMove(Attack move, bool withUI = false)
         {
             for(int i = 0; i< attackList.Length; i++)
@@ -104,6 +104,40 @@
                 attackList[rng.Next(0, 4)] = move;
             }
             //if UI then the player chooses which move to replace
+            else
+            {
+                Console.WriteLine(name + " is trying to learn " + move.attackName + "!");
+                Console.WriteLine("But it can't learn more than 4 moves, forget old move?");
+                int choice = Utils.GetChoice("Yes", "No");
+                if (choice == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Which move do you want to forget?");
+                    Console.WriteLine("Learning: " + move.attackName + " | POWER: " + move.basePower + " | TYPE: " + move.attackType.ToString());
+                    Console.WriteLine();
+                    List<string> options = GetAttackList();
+                    options.Add("Cancel");
+                    choice = Utils.GetChoice(options.ToArray());
+                    if(choice == options.Count - 1)
+                    {
+                        //cancel
+                        Console.WriteLine(name + " did not learn " + move.attackName + ".");
+                    }
+                    else
+                    {
+                        Console.WriteLine("1... 2... 3... POOF!");
+                        Thread.Sleep(2000);
+                        Console.WriteLine(name + " forgot " + attackList[choice].attackName + " and learned " + move.attackName);
+                        attackList[choice] = move;
+                    }
+                    Thread.Sleep(2000);
+                }
+                else
+                {
+                    Console.WriteLine(name + " did not learn " + move.attackName + ".");
+                    Thread.Sleep(2000);
+                }
+            }
         }
 
         public void DoAttack(int attackChoice, Pokemon target)
@@ -140,8 +174,8 @@
             return text;
         }
 
-        //returns an array of attack names this pokemon knows
-        public string[] GetAttackList()
+        //returns a list of attack names this pokemon knows
+        public List<string> GetAttackList()
         {
             List<string> list = new List<string>();
             foreach(Attack attack in attackList)
@@ -149,7 +183,7 @@
                 if(attack != null)
                     list.Add(attack.attackName + " | POWER: " + attack.basePower + " | TYPE: " + attack.attackType.ToString());
             }
-            return list.ToArray();
+            return list;
         }
 
         //draws a healthbar for this pokemon of the given length
@@ -240,6 +274,7 @@
                 Thread.Sleep(2000);
                 //evolve
                 pokemonData = Global.pokeDex[pokemonData.evolvesInto];
+                CalculateStats();
                 Console.WriteLine("Congratulations! Your {0} evolved into a {1}!", oldName, name);
                 Thread.Sleep(2500);
                 Console.Clear();
