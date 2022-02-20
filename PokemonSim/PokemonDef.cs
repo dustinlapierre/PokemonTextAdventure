@@ -23,6 +23,8 @@
             description = "The GRASS/POISON type POKéMON with a seed planted on its back.";
             type.Add(PokemonType.GRASS);
             type.Add(PokemonType.POISON);
+            evolvesInto = 2;
+            evolvesAt = 16;
             baseHP = 45;
             baseAttack = 65;
             baseDefense = 65;
@@ -30,6 +32,23 @@
             learnset = new Dictionary<int, Attack>() { 
                 { 1, new Tackle() },
                 { 3, new VineWhip() },
+            };
+        }
+    }
+    public class Ivysaur : PokemonDef
+    {
+        public Ivysaur()
+        {
+            name = "Ivysaur";
+            description = "Exposure to sunlight adds to its strength. Sunlight also makes the bud on its back grow larger.";
+            type.Add(PokemonType.GRASS);
+            type.Add(PokemonType.POISON);
+            baseHP = 60;
+            baseAttack = 80;
+            baseDefense = 80;
+            baseSpeed = 60;
+            learnset = new Dictionary<int, Attack>() {
+                { 1, new VineWhip() }
             };
         }
     }
@@ -75,6 +94,8 @@
             name = "Squirtle";
             description = "The WATER type tiny turtle POKéMON.";
             type.Add(PokemonType.WATER);
+            evolvesInto = 8;
+            evolvesAt = 16;
             baseHP = 44;
             baseAttack = 50;
             baseDefense = 65;
@@ -82,6 +103,22 @@
             learnset = new Dictionary<int, Attack>() { 
                 { 1, new Tackle() },
                 { 3, new WaterGun() }
+            };
+        }
+    }
+    public class Wartortle : PokemonDef
+    {
+        public Wartortle()
+        {
+            name = "Wartortle";
+            description = "It cleverly controls its furry ears and tail to maintain its balance while swimming.";
+            type.Add(PokemonType.WATER);
+            baseHP = 59;
+            baseAttack = 65;
+            baseDefense = 80;
+            baseSpeed = 58;
+            learnset = new Dictionary<int, Attack>() {
+                { 1, new WaterGun() }
             };
         }
     }

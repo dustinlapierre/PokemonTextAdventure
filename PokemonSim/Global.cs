@@ -11,9 +11,11 @@
         public static Dictionary<int, PokemonDef> pokeDex = new Dictionary<int, PokemonDef>()
         {
             {1, new Bulbasaur()},
+            {2, new Ivysaur()},
             {4, new Charmander()},
             {5, new Charmeleon()},
             {7, new Squirtle()},
+            {8, new Wartortle()}
         };
     }
 }
